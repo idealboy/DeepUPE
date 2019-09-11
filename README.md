@@ -23,7 +23,7 @@
     
     when doing inferenc by c++, you should load the ops plugin befor loading graph like following:
     
-    '''
+    ```shell
     TF_Status *status = TF_NewStatus();
     TF_Library *lib_handle = TF_LoadLibrary("$PATH/hdrnet_ops.so", status);
     TF_Code code = TF_GetCode(status);
@@ -37,7 +37,7 @@
         return IMAGE_ENHANCE_INVALID;
     }
 
-    '''
+    ```
 3. Evaluation:
 The test set can be downloaded in https://drive.google.com/file/d/1HZnNgptNxjKJAhekz2K5yh0mW0yKIws2/view?usp=sharing. It includes 500 pair images from MIT-Adobe FiveK 4500-5000. You can download this and run:
 ```shell
