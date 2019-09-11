@@ -25,7 +25,7 @@ import skimage.io
 import skimage.transform
 import sys
 
-sys.path.append("/home/wangfengming/work/image-enhance/DeepUPE")
+sys.path.append("$PATH/DeepUPE")
 
 import time
 import tensorflow as tf
