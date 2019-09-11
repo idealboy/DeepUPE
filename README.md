@@ -18,6 +18,26 @@
     pip install -r requirements.txt
     make
     ```
+    Note: I compile the ops plugin based on tensorflow1.13, with GOOGLE_CUDA=1
+    sometimes, you will not find some headers, just change "#include "cuda/include/cuda.h" " into "#include "cuda.h"", and some others similar.
+    
+    when doing inferenc by c++, you should load the ops plugin befor loading graph like following:
+    
+    '''
+    TF_Status *status = TF_NewStatus();
+    TF_Library *lib_handle = TF_LoadLibrary("$PATH/hdrnet_ops.so", status);
+    TF_Code code = TF_GetCode(status);
+    std::string status_msg(TF_Message(status));
+
+    TF_DeleteStatus(status);
+
+    Status load_graph_status = LoadGraph(model, &session, dev_id_);
+    if (!load_graph_status.ok()) {
+        LOG(ERROR) << load_graph_status;
+        return IMAGE_ENHANCE_INVALID;
+    }
+
+    '''
 3. Evaluation:
 The test set can be downloaded in https://drive.google.com/file/d/1HZnNgptNxjKJAhekz2K5yh0mW0yKIws2/view?usp=sharing. It includes 500 pair images from MIT-Adobe FiveK 4500-5000. You can download this and run:
 ```shell
